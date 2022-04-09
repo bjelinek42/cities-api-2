@@ -5,7 +5,8 @@ export default {
     return {
       message: "Welcome to Cities!",
       cities: [],
-      newCityParams: {}
+      newCityParams: {},
+      currentCity: {}
     };
   },
   created: function () {
@@ -23,6 +24,10 @@ export default {
         console.log("creating city", response.data)
         this.cities.push(response.data)
       })
+    },
+    showCity: function (city) {
+      this.currentCity = city
+      document.querySelector("#show-city").showModal()
     }
   },
 };
@@ -38,6 +43,15 @@ export default {
     <button @click="createCity()">Create!</button>
     <div v-for="city in cities" v-bind:key="city">
       <p>{{ city.name }}</p>
+      <button @click="showCity(city)">More Info</button>
+      <dialog id="show-city">
+        <form method="dialog">
+          <p>Name: {{ currentCity.name }}</p>
+          <p>State: {{ currentCity.state }}</p>
+          <p>Population: {{ currentCity.population }}</p>
+          <button>Close</button>
+        </form>
+      </dialog>
     </div>
   </div>
 </template>
