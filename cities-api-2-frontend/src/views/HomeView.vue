@@ -36,6 +36,11 @@ export default {
         console.log("updating city", response.data)
         this.currentCity = {}
       })
+    },
+    destroyCity: function (city) {
+      axios.delete(`/cities/${city.id}`).then(response => {
+        console.log("deleting city", response)
+      })
     }
   },
 };
@@ -61,6 +66,7 @@ export default {
           <p>Name: <input type="text" v-model="editCityParams.name"></p>
           <p>State: <input type="text" v-model="editCityParams.state"></p>
           <p>Population: <input type="text" v-model="editCityParams.population"></p>
+          <button @click="destroyCity(currentCity)">Destroy</button>
           <button @click="updateCity(currentCity)">Update</button>
           <button>Close</button>
         </form>
