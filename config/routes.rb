@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/cities" => "cities#index"
   post "/cities" => "cities#create"
   get "/cities/:id" => "cities#show"
+  patch "/cities/:id" => "cities#update"
 end

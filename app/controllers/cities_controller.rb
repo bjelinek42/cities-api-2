@@ -17,4 +17,13 @@ class CitiesController < ApplicationController
     city = City.find(params[:id])
     render json: city
   end
+
+  def update
+    city = City.find(params[:id])
+    city.name = params[:city]
+    city.state = params[:state]
+    city.population = params[:population]
+    city.save
+    render json: city
+  end
 end
