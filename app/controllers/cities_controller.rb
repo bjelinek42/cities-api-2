@@ -26,4 +26,10 @@ class CitiesController < ApplicationController
     city.save
     render json: city
   end
+
+  def destroy
+    city = City.find(params[:id])
+    city.delete
+    render json: {message: "city deleted"}
+  end
 end

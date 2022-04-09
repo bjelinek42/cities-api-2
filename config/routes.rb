@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post "/cities" => "cities#create"
   get "/cities/:id" => "cities#show"
   patch "/cities/:id" => "cities#update"
+  delete "/cities/:id" => "cities#destroy"
 end
