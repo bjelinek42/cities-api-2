@@ -6,7 +6,8 @@ export default {
       message: "Welcome to Cities!",
       cities: [],
       newCityParams: {},
-      currentCity: {}
+      currentCity: {},
+      editCityParams: {}
     };
   },
   created: function () {
@@ -27,7 +28,14 @@ export default {
     },
     showCity: function (city) {
       this.currentCity = city
+      this.editCityParams = city
       document.querySelector("#show-city").showModal()
+    },
+    updateCity: function (city) {
+      axios.patch(`/cities/${city.id}`, this.editCityParams).then(response => {
+        console.log("updating city", response.data)
+        this.currentCity = {}
+      })
     }
   },
 };
@@ -49,6 +57,11 @@ export default {
           <p>Name: {{ currentCity.name }}</p>
           <p>State: {{ currentCity.state }}</p>
           <p>Population: {{ currentCity.population }}</p>
+          <p>Edit Info</p>
+          <p>Name: <input type="text" v-model="editCityParams.name"></p>
+          <p>State: <input type="text" v-model="editCityParams.state"></p>
+          <p>Population: <input type="text" v-model="editCityParams.population"></p>
+          <button @click="updateCity(currentCity)">Update</button>
           <button>Close</button>
         </form>
       </dialog>

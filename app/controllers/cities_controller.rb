@@ -20,7 +20,7 @@ class CitiesController < ApplicationController
 
   def update
     city = City.find(params[:id])
-    city.name = params[:city]
+    city.name = params[:name]
     city.state = params[:state]
     city.population = params[:population]
     city.save
